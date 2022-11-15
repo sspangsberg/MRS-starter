@@ -1,7 +1,7 @@
-package easv.mrs.dal.db;
+package easv.mrs.DAL.db;
 
-import easv.mrs.be.Movie;
-import easv.mrs.dal.IMovieDataAccess;
+import easv.mrs.BE.Movie;
+import easv.mrs.DAL.IMovieDataAccess;
 
 import java.util.List;
 

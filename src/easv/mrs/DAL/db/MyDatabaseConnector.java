@@ -1,4 +1,4 @@
-package easv.mrs.dal.db;
+package easv.mrs.DAL.db;
 
 
 public class MyDatabaseConnector {

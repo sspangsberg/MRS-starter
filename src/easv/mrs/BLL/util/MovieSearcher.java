@@ -1,6 +1,6 @@
-package easv.mrs.bll.util;
+package easv.mrs.BLL.util;
 
-import easv.mrs.be.Movie;
+import easv.mrs.BE.Movie;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package easv.mrs.be;
+package easv.mrs.BE;
 
 public class Movie {
 

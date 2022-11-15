@@ -1,9 +1,9 @@
-package easv.mrs.bll;
+package easv.mrs.BLL;
 
-import easv.mrs.be.Movie;
-import easv.mrs.bll.util.MovieSearcher;
-import easv.mrs.dal.IMovieDataAccess;
-import easv.mrs.dal.MovieDAO_Mock;
+import easv.mrs.BE.Movie;
+import easv.mrs.BLL.util.MovieSearcher;
+import easv.mrs.DAL.IMovieDataAccess;
+import easv.mrs.DAL.MovieDAO_Mock;
 
 import java.util.List;
 

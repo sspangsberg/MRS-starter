@@ -1,4 +1,4 @@
-package easv.mrs.gui;
+package easv.mrs.GUI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("MovieView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/MovieView.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();

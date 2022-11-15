@@ -1,7 +1,7 @@
-package easv.mrs.gui;
+package easv.mrs.GUI.Model;
 
-import easv.mrs.be.Movie;
-import easv.mrs.bll.MovieManager;
+import easv.mrs.BE.Movie;
+import easv.mrs.BLL.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
