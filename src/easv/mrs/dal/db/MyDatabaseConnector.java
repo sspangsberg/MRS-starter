@@ -1,14 +1,10 @@
-package dal.db;
+package easv.mrs.dal.db;
 
-
-
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class MyDatabaseConnector {
 
 
-    //Class will be included when we start working on DATABASES
+    //Class will easv.mrs.be included when we start working on DATABASES
     /*
     private SQLServerDataSource dataSource;
 

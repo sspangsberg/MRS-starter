@@ -1,9 +1,8 @@
-package dal;
+package easv.mrs.dal;
 
-import be.Movie;
+import easv.mrs.be.Movie;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieDAO implements IMovieDataAccess {

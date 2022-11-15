@@ -1,11 +1,10 @@
-package gui;
+package easv.mrs.gui;
 
-import be.Movie;
-import bll.MovieManager;
+import easv.mrs.be.Movie;
+import easv.mrs.bll.MovieManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.IOException;
 import java.util.List;
 
 public class MovieModel {

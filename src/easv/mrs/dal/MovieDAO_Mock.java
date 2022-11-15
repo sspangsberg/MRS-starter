@@ -1,6 +1,6 @@
-package dal;
+package easv.mrs.dal;
 
-import be.Movie;
+import easv.mrs.be.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
