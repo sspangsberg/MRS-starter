@@ -11,10 +11,10 @@ public class MyDatabaseConnector {
     public MyDatabaseConnector()
     {
         dataSource = new SQLServerDataSource();
-        dataSource.setServerName("10.176.111.31");
-        dataSource.setDatabaseName("NetflixRecommendationSystem");
-        dataSource.setUser("CSe20A_40");
-        dataSource.setPassword("CSe20A_40");
+        dataSource.setServerName("");
+        dataSource.setDatabaseName("");
+        dataSource.setUser("");
+        dataSource.setPassword("");
         dataSource.setPortNumber(1433);
     }
 
