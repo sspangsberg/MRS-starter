@@ -4,20 +4,28 @@ package easv.mrs.DAL.db;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class MyDatabaseConnector {
 
 
     //Class will easv.mrs.be included when we start working on DATABASES
+    private static final String PROP_FILE = "config/config.settings";
 
     private SQLServerDataSource dataSource;
 
-    public MyDatabaseConnector()
-    {
+    public MyDatabaseConnector() throws IOException {
+        Properties databaseProperties = new Properties();
+        databaseProperties.load(new FileInputStream(new File(PROP_FILE)));
+
         dataSource = new SQLServerDataSource();
-        dataSource.setServerName("10.176.111.34");
+        dataSource.setServerName(databaseProperties.getProperty("Server"));
         dataSource.setDatabaseName("SMSJ_MRS2023");
         dataSource.setUser("CSe2023a_e_39");
         dataSource.setPassword("CSe2023aE39#23");
@@ -30,7 +38,7 @@ public class MyDatabaseConnector {
     }
 
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
 
         MyDatabaseConnector databaseConnector = new MyDatabaseConnector();
 
@@ -43,6 +51,7 @@ public class MyDatabaseConnector {
             e.printStackTrace();
         }
     }
+
 
 
 }

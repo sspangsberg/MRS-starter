@@ -73,11 +73,19 @@ public class MovieViewController implements Initializable {
         }
         catch (Exception e) {
             displayError(e);
+            doStuff(e);
             e.printStackTrace();
         }
 
 
 
+
+    }
+
+
+    private void doStuff(Exception e) {
+
+        e.printStackTrace();
 
     }
 }

@@ -4,7 +4,9 @@ import easv.mrs.BE.Movie;
 import easv.mrs.BLL.util.MovieSearcher;
 import easv.mrs.DAL.IMovieDataAccess;
 import easv.mrs.DAL.MovieDAO_File;
+import easv.mrs.DAL.db.MovieDAO_DB;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MovieManager {
@@ -13,9 +15,10 @@ public class MovieManager {
 
     private IMovieDataAccess movieDAO;
 
-    public MovieManager() {
+    public MovieManager() throws IOException {
         //movieDAO = new MovieDAO_Mock();
-        movieDAO = new MovieDAO_File();
+        //movieDAO = new MovieDAO_File();
+        movieDAO = new MovieDAO_DB();
     }
 
     public List<Movie> getAllMovies() throws Exception {
