@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = loader.load(getClass().getResource("/View/MovieView.fxml"));
 
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

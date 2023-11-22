@@ -58,10 +58,9 @@ public class MovieDAO_DB implements IMovieDataAccess {
         // SQL command
         String sql = "INSERT INTO dbo.Movie (Title,Year) VALUES (?,?);";
 
-        try (Connection conn = databaseConnector.getConnection())
+        try (Connection conn = databaseConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
         {
-            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
             // Bind parameters
             stmt.setString(1,movie.getTitle());
             stmt.setInt(2, movie.getYear());
@@ -82,27 +81,59 @@ public class MovieDAO_DB implements IMovieDataAccess {
 
             return createdMovie;
         }
-        /*
+
         catch (SQLException ex)
         {
             // create entry in log file
             ex.printStackTrace();
             throw new Exception("Could not create movie", ex);
         }
-        */
+
     }
 
     public void updateMovie(Movie movie) throws Exception {
 
+        // SQL command
+        String sql = "UPDATE dbo.Movie SET Title = ?, Year = ? WHERE ID = ?";
 
+        try (Connection conn = databaseConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            // Bind parameters
+            stmt.setString(1,movie.getTitle());
+            stmt.setInt(2, movie.getYear());
+            stmt.setInt(3, movie.getId());
 
-        //TODO Do this
-        throw new UnsupportedOperationException();
+            // Run the specified SQL statement
+            stmt.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            // create entry in log file
+            ex.printStackTrace();
+            throw new Exception("Could not update movie", ex);
+        }
     }
 
     public void deleteMovie(Movie movie) throws Exception {
-        //TODO Do this
-        throw new UnsupportedOperationException();
+        // SQL command
+        String sql = "DELETE FROM dbo.Movie WHERE ID = ?;";
+
+        try (Connection conn = databaseConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            // Bind parameters
+            stmt.setInt(1, movie.getId());
+
+            // Run the specified SQL statement
+            stmt.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            // create entry in log file
+            ex.printStackTrace();
+            throw new Exception("Could not delete movie", ex);
+        }
     }
 
     public List<Movie> searchMovies(String query) throws Exception {

@@ -26,9 +26,9 @@ public class MyDatabaseConnector {
 
         dataSource = new SQLServerDataSource();
         dataSource.setServerName(databaseProperties.getProperty("Server"));
-        dataSource.setDatabaseName("SMSJ_MRS2023");
-        dataSource.setUser("CSe2023a_e_39");
-        dataSource.setPassword("CSe2023aE39#23");
+        dataSource.setDatabaseName(databaseProperties.getProperty("Database"));
+        dataSource.setUser(databaseProperties.getProperty("User"));
+        dataSource.setPassword(databaseProperties.getProperty("Password"));
         dataSource.setPortNumber(1433);
         dataSource.setTrustServerCertificate(true);
     }
@@ -37,21 +37,20 @@ public class MyDatabaseConnector {
         return dataSource.getConnection();
     }
 
+    /* Testing purposes...
 
     public static void main(String[] args) throws SQLException, IOException {
 
         MyDatabaseConnector databaseConnector = new MyDatabaseConnector();
 
         try (Connection connection = databaseConnector.getConnection()) {
-
             System.out.println("Is it open? " + !connection.isClosed());
-
         } //Connection gets closed here
         catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
+    */
 
 
 }
