@@ -6,6 +6,11 @@ public class Movie {
     private String title;
     private int year;
 
+    public Movie(int year, String title) {
+        this.title = title;
+        this.year = year;
+    }
+
     public Movie(int id, int year, String title) {
         this.id = id;
         this.title = title;

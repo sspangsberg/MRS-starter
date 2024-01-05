@@ -58,8 +58,21 @@ public class MovieViewController implements Initializable {
 
         // table view listener (when user selects a movie in the tableview)
         tblMovies.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            txtTitle.setText(newValue.getTitle());
-            txtYear.setText(Integer.toString(newValue.getYear()));
+
+            if (newValue != null) {
+                txtTitle.setText(newValue.getTitle());
+                txtYear.setText(Integer.toString(newValue.getYear()));
+
+                btnUpdate.setDisable(false);
+            }
+            else {
+                txtTitle.setText("");
+                txtYear.setText("");
+
+                btnUpdate.setDisable(true);
+            }
+
+
         });
 
         // list view listener (when user selects a movie in the listview)
@@ -97,11 +110,16 @@ public class MovieViewController implements Initializable {
      */
     public void createNewMovie(ActionEvent actionEvent) {
         // get data from UI
+        if (txtTitle.getText().isEmpty() || txtYear.getText().isEmpty())
+            return;
+
         String title = txtTitle.getText();
         int year = Integer.parseInt(txtYear.getText());
 
+
+
         // create movie object to pass to method
-        Movie newMovie = new Movie(-1, year, title);
+        Movie newMovie = new Movie(year, title);
 
         try {
             movieModel.createNewMovie(newMovie);

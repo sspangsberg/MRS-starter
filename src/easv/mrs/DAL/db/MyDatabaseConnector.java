@@ -20,6 +20,10 @@ public class MyDatabaseConnector {
 
     private SQLServerDataSource dataSource;
 
+    /**
+     * 
+     * @throws IOException
+     */
     public MyDatabaseConnector() throws IOException {
         Properties databaseProperties = new Properties();
         databaseProperties.load(new FileInputStream(new File(PROP_FILE)));
