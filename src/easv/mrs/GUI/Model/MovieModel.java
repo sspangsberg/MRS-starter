@@ -1,40 +1,44 @@
 package easv.mrs.GUI.Model;
 
+// Project imports
 import easv.mrs.BE.Movie;
 import easv.mrs.BLL.MovieManager;
+import easv.mrs.util.MRSException;
+
+// Java imports
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.List;
+
 
 public class MovieModel {
 
     private ObservableList<Movie> moviesToBeViewed;
-
     private MovieManager movieManager;
 
-
-    public MovieModel() throws Exception {
+    /**
+     *
+     * @throws MRSException
+     */
+    public MovieModel() throws MRSException {
         movieManager = new MovieManager();
         moviesToBeViewed = FXCollections.observableArrayList();
         moviesToBeViewed.addAll(movieManager.getAllMovies());
     }
-
-
 
     public ObservableList<Movie> getObservableMovies() {
         return moviesToBeViewed;
     }
 
 
-    public void searchMovie(String query) throws Exception {
+    public void searchMovie(String query) throws MRSException {
         List<Movie> searchResults = movieManager.searchMovies(query);
         moviesToBeViewed.clear();
         moviesToBeViewed.addAll(searchResults);
     }
 
 
-    public void createNewMovie(Movie newMovie) throws Exception {
+    public void createNewMovie(Movie newMovie) throws MRSException {
         Movie m = movieManager.createNewMovie(newMovie);
         moviesToBeViewed.add(m); // update list
 
@@ -44,7 +48,7 @@ public class MovieModel {
     }
 
 
-    public void updateMovie(Movie updatedMovie) throws Exception {
+    public void updateMovie(Movie updatedMovie) throws MRSException {
         // update movie in DAL layer (through the layers)
         movieManager.updateMovie(updatedMovie);
 
@@ -55,7 +59,7 @@ public class MovieModel {
     }
 
 
-    public void deleteMovie(Movie selectedMovie) throws Exception {
+    public void deleteMovie(Movie selectedMovie) throws MRSException {
         // delete movie in DAL layer (through the layers)
         movieManager.deleteMovie(selectedMovie);
 

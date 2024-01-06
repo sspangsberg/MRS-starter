@@ -3,26 +3,25 @@ package easv.mrs.DAL.db;
 // Project imports
 import easv.mrs.BE.Movie;
 import easv.mrs.DAL.IMovieDataAccess;
+import easv.mrs.util.MRSException;
 
 // Java imports
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieDAO_DB implements IMovieDataAccess {
 
-    private MyDatabaseConnector databaseConnector;
+    private DBConnector dbConnector = DBConnector.getInstance();
 
-    public MovieDAO_DB() throws IOException {
-        databaseConnector = new MyDatabaseConnector();
-    }
+    public MovieDAO_DB() throws MRSException {}
 
-    public List<Movie> getAllMovies() throws Exception {
+    @Override
+    public List<Movie> getAllMovies() throws MRSException {
 
         ArrayList<Movie> allMovies = new ArrayList<>();
 
-        try (Connection conn = databaseConnector.getConnection();
+        try (Connection conn = dbConnector.getConnection();
              Statement stmt = conn.createStatement())
         {
             String sql = "SELECT * FROM dbo.Movie;";
@@ -44,21 +43,18 @@ public class MovieDAO_DB implements IMovieDataAccess {
         }
         catch (SQLException ex)
         {
-            ex.printStackTrace();
-            throw new Exception("Could not get movies from database", ex);
+            // fixme: optionally log to file, db etc.
+            throw new MRSException("Could not get movies from database.", ex);
         }
-
-
-        //TODO Do this
-        //throw new UnsupportedOperationException();
     }
 
-    public Movie createMovie(Movie movie) throws Exception {
+    @Override
+    public Movie createMovie(Movie movie) throws MRSException {
 
         // SQL command
         String sql = "INSERT INTO dbo.Movie (Title,Year) VALUES (?,?);";
 
-        try (Connection conn = databaseConnector.getConnection();
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
         {
             // Bind parameters
@@ -81,22 +77,20 @@ public class MovieDAO_DB implements IMovieDataAccess {
 
             return createdMovie;
         }
-
         catch (SQLException ex)
         {
-            // create entry in log file
-            ex.printStackTrace();
-            throw new Exception("Could not create movie", ex);
+            // fixme: optionally log to file, db etc.
+            throw new MRSException("Could not get movies from database.", ex);
         }
-
     }
 
-    public void updateMovie(Movie movie) throws Exception {
+    @Override
+    public void updateMovie(Movie movie) throws MRSException {
 
         // SQL command
         String sql = "UPDATE dbo.Movie SET Title = ?, Year = ? WHERE ID = ?";
 
-        try (Connection conn = databaseConnector.getConnection();
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql))
         {
             // Bind parameters
@@ -109,17 +103,17 @@ public class MovieDAO_DB implements IMovieDataAccess {
         }
         catch (SQLException ex)
         {
-            // create entry in log file
-            ex.printStackTrace();
-            throw new Exception("Could not update movie", ex);
+            // fixme: optionally log to file, db etc.
+            throw new MRSException("Could not get movies from database.", ex);
         }
     }
 
-    public void deleteMovie(Movie movie) throws Exception {
+    @Override
+    public void deleteMovie(Movie movie) throws MRSException {
         // SQL command
         String sql = "DELETE FROM dbo.Movie WHERE ID = ?;";
 
-        try (Connection conn = databaseConnector.getConnection();
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql))
         {
             // Bind parameters
@@ -130,9 +124,8 @@ public class MovieDAO_DB implements IMovieDataAccess {
         }
         catch (SQLException ex)
         {
-            // create entry in log file
-            ex.printStackTrace();
-            throw new Exception("Could not delete movie", ex);
+            // fixme: optionally log to file, db etc.
+            throw new MRSException("Could not get movies from database.", ex);
         }
     }
 
@@ -141,5 +134,4 @@ public class MovieDAO_DB implements IMovieDataAccess {
         //TODO Do this
         throw new UnsupportedOperationException();
     }
-
 }

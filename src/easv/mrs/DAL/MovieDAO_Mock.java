@@ -1,6 +1,7 @@
 package easv.mrs.DAL;
 
 import easv.mrs.BE.Movie;
+import easv.mrs.util.MRSException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +25,16 @@ public class MovieDAO_Mock implements IMovieDataAccess {
     }
 
     @Override
-    public Movie createMovie(Movie movie) throws Exception {
+    public Movie createMovie(Movie movie) throws MRSException {
         return null;
     }
 
     @Override
-    public void updateMovie(Movie movie) throws Exception {
-
+    public void updateMovie(Movie movie) throws MRSException {
     }
 
     @Override
-    public void deleteMovie(Movie movie) throws Exception {
-
+    public void deleteMovie(Movie movie) throws MRSException {
     }
 
 }

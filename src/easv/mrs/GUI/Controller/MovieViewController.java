@@ -1,22 +1,28 @@
 package easv.mrs.GUI.Controller;
 
+// Project imports
 import easv.mrs.BE.Movie;
 import easv.mrs.GUI.Model.MovieModel;
-import javafx.event.ActionEvent;
+import easv.mrs.util.MRSException;
+
+// Java imports
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class MovieViewController implements Initializable {
 
 
-    public TextField txtMovieSearch;
-    public ListView<Movie> lstMovies;
+    @FXML
+    private TextField txtMovieSearch;
+
+    @FXML
+    private ListView<Movie> lstMovies;
 
     @FXML
     private Button btnCreate, btnUpdate;
@@ -34,14 +40,14 @@ public class MovieViewController implements Initializable {
 
     private MovieModel movieModel;
 
+
     public MovieViewController()  {
 
         try {
             movieModel = new MovieModel();
         }
-        catch (Exception e) {
-            displayError(e);
-            e.printStackTrace();
+        catch (MRSException ex) {
+            displayError(ex);
         }
     }
 
@@ -85,23 +91,25 @@ public class MovieViewController implements Initializable {
         txtMovieSearch.textProperty().addListener((observableValue, oldValue, newValue) -> {
             try {
                 movieModel.searchMovie(newValue);
-            } catch (Exception e) {
+            } catch (MRSException e) {
                 displayError(e);
-                e.printStackTrace();
             }
         });
     }
 
     /**
      *
-     * @param t
+     * @param ex
      */
-    private void displayError(Throwable t)
+    private void displayError(MRSException ex)
     {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Something went wrong");
-        alert.setHeaderText(t.getMessage());
+        alert.setHeaderText(ex.getMessage());
         alert.showAndWait();
+
+        // optionally print stack stace
+        ex.printStackTrace();
     }
 
     /**
@@ -116,17 +124,14 @@ public class MovieViewController implements Initializable {
         String title = txtTitle.getText();
         int year = Integer.parseInt(txtYear.getText());
 
-
-
         // create movie object to pass to method
         Movie newMovie = new Movie(year, title);
 
         try {
             movieModel.createNewMovie(newMovie);
         }
-        catch (Exception e) {
-            displayError(e);
-            e.printStackTrace();
+        catch (MRSException ex) {
+            displayError(ex);
         }
     }
 
@@ -152,9 +157,8 @@ public class MovieViewController implements Initializable {
                 lstMovies.refresh();
                 tblMovies.refresh();
             }
-            catch (Exception e) {
-                displayError(e);
-                e.printStackTrace();
+            catch (MRSException ex) {
+                displayError(ex);
             }
         }
     }
@@ -172,9 +176,8 @@ public class MovieViewController implements Initializable {
                 // Delete movie in DAL layer (through the layers)
                 movieModel.deleteMovie(selectedMovie);
             }
-            catch (Exception e) {
-                displayError(e);
-                e.printStackTrace();
+            catch (MRSException ex) {
+                displayError(ex);
             }
         }
     }
