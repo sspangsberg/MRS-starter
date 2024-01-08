@@ -1,5 +1,6 @@
 package easv.mrs.BE;
 
+
 public class Movie {
 
     private int id;

@@ -1,17 +1,19 @@
 package easv.mrs.DAL;
 
+// Project imports
 import easv.mrs.BE.Movie;
 import easv.mrs.util.MRSException;
 
+// Java imports
 import java.util.List;
 
 public interface IMovieDataAccess {
 
-    public List<Movie> getAllMovies() throws MRSException;
+    List<Movie> getAllMovies() throws MRSException;
 
-    public Movie createMovie(Movie movie) throws MRSException;
+    Movie createMovie(Movie movie) throws MRSException;
 
-    public void updateMovie(Movie movie) throws MRSException;
+    void updateMovie(Movie movie) throws MRSException;
 
-    public void deleteMovie(Movie movie) throws MRSException;
+    void deleteMovie(Movie movie) throws MRSException;
 }
