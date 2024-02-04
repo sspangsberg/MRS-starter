@@ -21,8 +21,12 @@ public class MovieManager {
         movieDAO = new MovieDAO_DB();
     }
 
-    public List<Movie> getAllMovies() throws Exception {
-        return movieDAO.getAllMovies();
+    public List<Movie> getAllMovies() {
+        try {
+            return movieDAO.getAllMovies();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Movie> searchMovies(String query) throws Exception {

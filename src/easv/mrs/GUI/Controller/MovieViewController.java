@@ -34,15 +34,8 @@ public class MovieViewController implements Initializable {
 
     private MovieModel movieModel;
 
-    public MovieViewController()  {
-
-        try {
-            movieModel = new MovieModel();
-        }
-        catch (Exception e) {
-            displayError(e);
-            e.printStackTrace();
-        }
+    public MovieViewController() {
+        movieModel = new MovieModel();
     }
 
     @Override
@@ -108,7 +101,7 @@ public class MovieViewController implements Initializable {
      *
      * @param actionEvent
      */
-    public void createNewMovie(ActionEvent actionEvent) {
+    public void createNewMovie(ActionEvent actionEvent) throws Exception {
         // get data from UI
         if (txtTitle.getText().isEmpty() || txtYear.getText().isEmpty())
             return;
@@ -116,18 +109,10 @@ public class MovieViewController implements Initializable {
         String title = txtTitle.getText();
         int year = Integer.parseInt(txtYear.getText());
 
-
-
         // create movie object to pass to method
         Movie newMovie = new Movie(year, title);
 
-        try {
-            movieModel.createNewMovie(newMovie);
-        }
-        catch (Exception e) {
-            displayError(e);
-            e.printStackTrace();
-        }
+        movieModel.createNewMovie(newMovie);
     }
 
 

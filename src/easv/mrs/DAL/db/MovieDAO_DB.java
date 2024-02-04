@@ -1,6 +1,7 @@
 package easv.mrs.DAL.db;
 
 // Project imports
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.mrs.BE.Movie;
 import easv.mrs.DAL.IMovieDataAccess;
 
@@ -18,14 +19,14 @@ public class MovieDAO_DB implements IMovieDataAccess {
         databaseConnector = new MyDatabaseConnector();
     }
 
-    public List<Movie> getAllMovies() throws Exception {
+    public List<Movie> getAllMovies() {
 
         ArrayList<Movie> allMovies = new ArrayList<>();
 
         try (Connection conn = databaseConnector.getConnection();
              Statement stmt = conn.createStatement())
         {
-            String sql = "SELECT * FROM dbo.Movie;";
+            String sql = "SELECT1 * FROM dbo.Movie;";
             ResultSet rs = stmt.executeQuery(sql);
 
             // Loop through rows from the database result set
@@ -41,19 +42,14 @@ public class MovieDAO_DB implements IMovieDataAccess {
             }
             return allMovies;
 
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        catch (SQLException ex)
-        {
-            ex.printStackTrace();
-            throw new Exception("Could not get movies from database", ex);
-        }
-
-
-        //TODO Do this
-        //throw new UnsupportedOperationException();
     }
 
-    public Movie createMovie(Movie movie) throws Exception {
+    public Movie createMovie(Movie movie) {
 
         // SQL command
         String sql = "INSERT INTO dbo.Movie (Title,Year) VALUES (?,?);";
@@ -80,15 +76,11 @@ public class MovieDAO_DB implements IMovieDataAccess {
             Movie createdMovie = new Movie(id, movie.getYear(), movie.getTitle());
 
             return createdMovie;
+        } catch (SQLServerException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        catch (SQLException ex)
-        {
-            // create entry in log file
-            ex.printStackTrace();
-            throw new Exception("Could not create movie", ex);
-        }
-
     }
 
     public void updateMovie(Movie movie) throws Exception {
