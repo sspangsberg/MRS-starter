@@ -5,7 +5,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 // Project imports
-import easv.mrs.util.MRSException;
+import easv.mrs.Util.MRSException;
 
 // Java imports
 import java.io.File;

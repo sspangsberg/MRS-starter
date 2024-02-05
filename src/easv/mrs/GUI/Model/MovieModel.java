@@ -3,7 +3,7 @@ package easv.mrs.GUI.Model;
 // Project imports
 import easv.mrs.BE.Movie;
 import easv.mrs.BLL.MovieManager;
-import easv.mrs.util.MRSException;
+import easv.mrs.Util.MRSException;
 
 // Java imports
 import javafx.collections.FXCollections;

@@ -1,7 +1,7 @@
 package easv.mrs.DAL;
 
 import easv.mrs.BE.Movie;
-import easv.mrs.util.MRSException;
+import easv.mrs.Util.MRSException;
 
 import java.util.ArrayList;
 import java.util.List;

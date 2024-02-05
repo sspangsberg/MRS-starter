@@ -5,7 +5,7 @@ import easv.mrs.BE.Movie;
 import easv.mrs.BLL.util.MovieSearcher;
 import easv.mrs.DAL.IMovieDataAccess;
 import easv.mrs.DAL.db.MovieDAO_DB;
-import easv.mrs.util.MRSException;
+import easv.mrs.Util.MRSException;
 
 // Java imports
 import java.util.List;

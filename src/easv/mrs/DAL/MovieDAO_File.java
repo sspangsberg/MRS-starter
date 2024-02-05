@@ -2,7 +2,7 @@ package easv.mrs.DAL;
 
 // Project imports
 import easv.mrs.BE.Movie;
-import easv.mrs.util.MRSException;
+import easv.mrs.Util.MRSException;
 
 // Java imports
 import java.io.*;
@@ -46,10 +46,12 @@ public class MovieDAO_File implements IMovieDataAccess {
 
             return movies;
         }
+
         catch (IOException ex) {
             // fixme: log to file,db etc.
             throw new MRSException("Could not read all movies from file.", ex);
         }
+
     }
 
     @Override

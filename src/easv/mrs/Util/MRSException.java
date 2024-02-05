@@ -1,4 +1,4 @@
-package easv.mrs.util;
+package easv.mrs.Util;
 
 /**
  * @author smsj
@@ -10,11 +10,7 @@ public class MRSException extends Exception {
 
     public MRSException(String msg) { super(msg); }
 
-    public MRSException(String msg, Exception cause) { super(msg, cause); }
+    public MRSException(String msg, Throwable cause) { super(msg, cause); }
 
     public MRSException(Throwable cause) { super(cause); }
-
-    public MRSException(String msg, Throwable cause, boolean enableSuppresion, boolean writableStackTrace) {
-        super(msg, cause, enableSuppresion, writableStackTrace);
-    }
 }

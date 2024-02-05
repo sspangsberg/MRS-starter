@@ -2,7 +2,7 @@ package easv.mrs.DAL;
 
 // Project imports
 import easv.mrs.BE.Movie;
-import easv.mrs.util.MRSException;
+import easv.mrs.Util.MRSException;
 
 // Java imports
 import java.util.List;

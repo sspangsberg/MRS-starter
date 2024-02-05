@@ -3,7 +3,8 @@ package easv.mrs.GUI.Controller;
 // Project imports
 import easv.mrs.BE.Movie;
 import easv.mrs.GUI.Model.MovieModel;
-import easv.mrs.util.MRSException;
+import easv.mrs.GUI.Util.MessageHandler;
+import easv.mrs.Util.MRSException;
 
 // Java imports
 import javafx.fxml.FXML;
@@ -47,7 +48,7 @@ public class MovieViewController implements Initializable {
             movieModel = new MovieModel();
         }
         catch (MRSException ex) {
-            displayError(ex);
+            MessageHandler.displayError(ex);
         }
     }
 
@@ -92,25 +93,11 @@ public class MovieViewController implements Initializable {
             try {
                 movieModel.searchMovie(newValue);
             } catch (MRSException e) {
-                displayError(e);
+                MessageHandler.displayError(e);
             }
         });
     }
 
-    /**
-     *
-     * @param ex
-     */
-    private void displayError(MRSException ex)
-    {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Something went wrong");
-        alert.setHeaderText(ex.getMessage());
-        alert.showAndWait();
-
-        // optionally print stack stace
-        ex.printStackTrace();
-    }
 
     /**
      *
@@ -131,7 +118,7 @@ public class MovieViewController implements Initializable {
             movieModel.createNewMovie(newMovie);
         }
         catch (MRSException ex) {
-            displayError(ex);
+            MessageHandler.displayError(ex);
         }
     }
 
@@ -158,7 +145,7 @@ public class MovieViewController implements Initializable {
                 tblMovies.refresh();
             }
             catch (MRSException ex) {
-                displayError(ex);
+                MessageHandler.displayError(ex);
             }
         }
     }
@@ -177,7 +164,7 @@ public class MovieViewController implements Initializable {
                 movieModel.deleteMovie(selectedMovie);
             }
             catch (MRSException ex) {
-                displayError(ex);
+                MessageHandler.displayError(ex);
             }
         }
     }
